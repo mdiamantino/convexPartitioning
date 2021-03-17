@@ -1,0 +1,72 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 816291d40d4bd7faf007787c28b28a1c9d0d7eac8748cde6cb34666ff23f4a75
+
+name:           convexPartitioning
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/mdiamantino/convexPartitioning#readme>
+homepage:       https://github.com/mdiamantino/convexPartitioning#readme
+bug-reports:    https://github.com/mdiamantino/convexPartitioning/issues
+author:         Mark Diamantino Caribé
+maintainer:     mark.diamantinocaribe@student.kuleuven.be
+copyright:      2021 Mark Diamantino Caribé
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/mdiamantino/convexPartitioning
+
+library
+  exposed-modules:
+      Partitioner
+      Point
+      Polygon
+      Segment
+      SlopeUtils
+  other-modules:
+      Paths_convexPartitioning
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , hgeometry >=0.12.0.1
+    , hgeometry-combinatorial >=0.12.0.1
+  default-language: Haskell2010
+
+executable convexPartitioning-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_convexPartitioning
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , convexPartitioning
+    , hgeometry >=0.12.0.1
+    , hgeometry-combinatorial >=0.12.0.1
+  default-language: Haskell2010
+
+test-suite convexPartitioning-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_convexPartitioning
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , convexPartitioning
+    , hgeometry >=0.12.0.1
+    , hgeometry-combinatorial >=0.12.0.1
+  default-language: Haskell2010
