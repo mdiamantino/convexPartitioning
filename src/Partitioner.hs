@@ -32,12 +32,6 @@ findMagicPoint targetArea seg designatedVertex
     magicPoint2 = reversedShoelace targetArea slopeCoefficients designatedVertex v_ip1 1
 
 -- |
---  The 'without' function returns the polygon resulting from
---  the subtraction of 'partition' from 'mainPolygon'
-without :: ConvPolygon -> ConvPolygon -> ConvPolygon
-mainPolygon `without` partition = head mainPolygon : last partition : drop (length partition) mainPolygon
-
--- |
 --  The 'cut' function returns a partition having 'targetArea' AND
 --  the remaining part of the original cut polygon.
 cut :: ConvPolygon -> Double -> Point -> Int -> (ConvPolygon, ConvPolygon)
@@ -45,7 +39,7 @@ cut polygon targetArea designatedVertex i
   | areaOf currentTriangle == targetArea = (currentTriangle, polygon `without` currentTriangle)
   | areaOf currentTriangle > targetArea =
     let magicPoint = findMagicPoint targetArea (Segment v_ip1 v_ip2) designatedVertex
-        extractedPartition = take i polygon ++ [magicPoint]
+        extractedPartition = take (i + 1) polygon ++ [magicPoint]
      in (extractedPartition, polygon `without` extractedPartition)
   | otherwise =
     let residualArea = targetArea - areaOf currentTriangle
